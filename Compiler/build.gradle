@@ -3,7 +3,6 @@ apply plugin: 'com.github.dcendents.android-maven'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(path: ':library')
 }
 
 sourceCompatibility = 1.7

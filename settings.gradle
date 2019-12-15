@@ -1,2 +1,2 @@
-include ':app', ':library', ':Compiler', ':android-library'
+include ':app', ':Compiler'
 rootProject.name='auto_parcel'

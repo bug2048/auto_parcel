@@ -1,5 +1,7 @@
 package com.zxn.parcel;
 
+import com.zxn.parcel.annotation.Parcelable;
+
 import java.io.Writer;
 import java.util.Set;
 
@@ -18,7 +20,7 @@ import javax.tools.JavaFileObject;
  * @AutoService(Processor.class) 这个注解不要忘了，否则无法生成Java文件
  */
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
-@SupportedAnnotationTypes("com.zxn.parcel.Parcelable")
+@SupportedAnnotationTypes("com.zxn.parcel.annotation.Parcelable")
 public class ParcelProcessor extends AbstractProcessor {
 
     private Filer filer;
