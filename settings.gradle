@@ -1,0 +1,2 @@
+include ':app', ':library', ':Compiler'
+rootProject.name='auto_parcel'
