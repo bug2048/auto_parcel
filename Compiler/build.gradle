@@ -6,7 +6,7 @@ dependencies {
     implementation project(path: ':library')
 }
 
-sourceCompatibility = "7"
-targetCompatibility = "7"
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 group='com.zxn.parcel'
