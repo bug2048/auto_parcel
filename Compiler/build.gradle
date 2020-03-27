@@ -1,6 +1,5 @@
 apply plugin: 'java'
 apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.novoda.bintray-release'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -9,14 +8,3 @@ dependencies {
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-/** 以下开始是将Android Library上传到JCenter的相关配置**/
-publish {
-    userOrg = 'lqos'      //bintray注册的用户名
-    groupId = 'com.zxn.parcel'         //compile引用时的第1部分groupId
-    artifactId = 'auto_parcel'     //compile引用时的第2部分项目名
-    publishVersion = '0.0.5'    //compile引用时的第3部分版本号
-    desc = 'android Parcelable'
-    website = 'https://github.com/bug2048/auto_parcel'
-}
-// ./gradlew clean build bintrayUpload -PbintrayUser=lqos -PbintrayKey=df43aee71924eb0c643d6fe6d24328c528a42eed -PdryRun=false
-//

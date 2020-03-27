@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
+    lintOptions {
+        abortOnError false
+    }
+
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
@@ -26,8 +30,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    annotationProcessor project(':Compiler')
-    implementation project(':Compiler')
 
-//    implementation 'com.github.bug2048:auto_parcel:0.0.3'
+    implementation project(':Compiler')
+    annotationProcessor project(':Compiler')
+
+//    implementation 'com.github.bug2048:auto_parcel:0.0.5'
+//    annotationProcessor 'com.github.bug2048:auto_parcel:0.0.5'
 }

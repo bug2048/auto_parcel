@@ -19,7 +19,7 @@ import javax.tools.JavaFileObject;
 /**
  * @AutoService(Processor.class) 这个注解不要忘了，否则无法生成Java文件
  */
-@SupportedSourceVersion(SourceVersion.RELEASE_7)
+@SupportedSourceVersion(SourceVersion.RELEASE_6)
 @SupportedAnnotationTypes("com.zxn.parcel.annotation.Parcelable")
 public class ParcelProcessor extends AbstractProcessor {
 
@@ -64,6 +64,31 @@ public class ParcelProcessor extends AbstractProcessor {
         return true;
     }
 
+//
+//    "package com.example.parcelabledemo;\n"+
+//            "\n"+
+//            "import android.os.Parcel;\n"+
+//            "\n"+
+//            "/**\n"+
+//            " *\n"+
+//            " */\n"+
+//            "public class PdUtils {\n"+
+//            "    public static void writeValue(Parcel parcel, Object value) {\n"+
+//            "        parcel.writeValue(value);\n"+
+//            "    }\n"+
+//            "\n"+
+//            "    public static Object readValue(Parcel parcel, Object value) {\n"+
+//            "        return parcel.readValue(value.getClass().getClassLoader());\n"+
+//            "    }\n"+
+//            "}\n"
+
     private void writeLog(String str) {
+        // try {
+        // FileWriter fw = new FileWriter(new File("D:/process.txt"), true);
+        // fw.write(str + "\n");
+        // fw.close();
+        // } catch (IOException e) {
+        // e.printStackTrace();
+        // }
     }
 }
