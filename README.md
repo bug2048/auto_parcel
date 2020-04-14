@@ -1,6 +1,7 @@
 auto_parcel  是Android序列化工具,极其简单。
 
 [![](https://jitpack.io/v/bug2048/auto_parcel.svg)](https://jitpack.io/#bug2048/auto_parcel)
+[ ![Download](https://api.bintray.com/packages/lqos/maven/auto_parcel/images/download.svg?version=0.1.0) ](https://bintray.com/lqos/maven/auto_parcel/0.1.0/link)
 
 ## 导入依赖
 ```groovy
