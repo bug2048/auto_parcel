@@ -75,7 +75,7 @@ public class People {
                 String.format("name = %1s,age = %2s,birthday = %3s", people.getName(), String.valueOf(people.getAge()), String.valueOf(people.getBirthday())));
 
         Intent intent = new Intent();
-        intent.putExtra("data", People$$Parcelable.toParcelable(people));
+        intent.putExtra("data", People$Parcelable.toParcelable(people));
 
         People people2 = intent.getParcelableExtra("data");
 
