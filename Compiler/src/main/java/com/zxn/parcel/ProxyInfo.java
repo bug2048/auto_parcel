@@ -12,20 +12,27 @@ import javax.lang.model.type.TypeMirror;
  * @date 2019-12-12
  */
 public class ProxyInfo {
-    private static final String SUFFIX = "$$Parcelable";
+    private static final String SUFFIX = "$Parcelable";
 
     private String packageName;
     private String proxyName;
     private String className;
     private List<? extends Element> mElements;
 
-    public ProxyInfo(String qualifiedName, List<? extends Element> enclosedElements) {
-        super();
-        packageName = qualifiedName
-                .substring(0, qualifiedName.lastIndexOf("."));
-        className = qualifiedName.substring(packageName.length() + 1);
-        proxyName = className + SUFFIX;
+    public ProxyInfo(List<? extends Element> enclosedElements) {
         mElements = enclosedElements;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+        if (this.className.startsWith(packageName)) {
+            this.className = this.className.replace(packageName + ".", "");
+        }
+        proxyName = className.replace(packageName + ".", "").replace(".", "") + SUFFIX;
+    }
+
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
     }
 
     public String createCode() {

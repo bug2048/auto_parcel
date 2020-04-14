@@ -2,6 +2,7 @@ package com.zxn.parcel;
 
 import com.zxn.parcel.annotation.Parcelable;
 
+import java.io.IOException;
 import java.io.Writer;
 import java.util.Set;
 
@@ -13,8 +14,13 @@ import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
+import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.util.Elements;
+import javax.management.RuntimeErrorException;
 import javax.tools.JavaFileObject;
+
+import static javax.tools.Diagnostic.Kind.ERROR;
 
 /**
  * @AutoService(Processor.class) 这个注解不要忘了，否则无法生成Java文件
@@ -24,11 +30,13 @@ import javax.tools.JavaFileObject;
 public class ParcelProcessor extends AbstractProcessor {
 
     private Filer filer;
+    private Elements elementUtils;
 
     @Override
     public synchronized void init(ProcessingEnvironment env) {
         super.init(env);
         filer = env.getFiler();
+        elementUtils = env.getElementUtils();
     }
 
     @Override
@@ -40,9 +48,12 @@ public class ParcelProcessor extends AbstractProcessor {
             for (Element element : set) {
                 try {
                     TypeElement enclosingElement = (TypeElement) element;
-                    ProxyInfo pi = new ProxyInfo(enclosingElement
-                            .getQualifiedName().toString(), enclosingElement.getEnclosedElements());
-
+                    if (enclosingElement.getModifiers().contains(Modifier.PRIVATE) || enclosingElement.getModifiers().contains(Modifier.FINAL)) {
+                        error(element, "修饰符不能是'private'和'final'");
+                    }
+                    ProxyInfo pi = new ProxyInfo(enclosingElement.getEnclosedElements());
+                    pi.setPackageName(getPackageName(enclosingElement));
+                    pi.setClassName(enclosingElement.getQualifiedName().toString());
                     writeLog(pi.getFullName());
                     JavaFileObject jfo = filer.createSourceFile(
                             pi.getFullName(), enclosingElement);
@@ -52,7 +63,7 @@ public class ParcelProcessor extends AbstractProcessor {
                     writer.flush();
                     writer.close();
                     writeLog("ok");
-                } catch (Exception e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                     writeLog(e.getMessage());
                 }
@@ -64,31 +75,17 @@ public class ParcelProcessor extends AbstractProcessor {
         return true;
     }
 
-//
-//    "package com.example.parcelabledemo;\n"+
-//            "\n"+
-//            "import android.os.Parcel;\n"+
-//            "\n"+
-//            "/**\n"+
-//            " *\n"+
-//            " */\n"+
-//            "public class PdUtils {\n"+
-//            "    public static void writeValue(Parcel parcel, Object value) {\n"+
-//            "        parcel.writeValue(value);\n"+
-//            "    }\n"+
-//            "\n"+
-//            "    public static Object readValue(Parcel parcel, Object value) {\n"+
-//            "        return parcel.readValue(value.getClass().getClassLoader());\n"+
-//            "    }\n"+
-//            "}\n"
-
     private void writeLog(String str) {
-        // try {
-        // FileWriter fw = new FileWriter(new File("D:/process.txt"), true);
-        // fw.write(str + "\n");
-        // fw.close();
-        // } catch (IOException e) {
-        // e.printStackTrace();
-        // }
+    }
+
+    private void error(Element element, String message, Object... args) {
+        if (args.length > 0) {
+            message = String.format(message, args);
+        }
+        processingEnv.getMessager().printMessage(ERROR, message, element);
+    }
+
+    private String getPackageName(TypeElement type) {
+        return elementUtils.getPackageOf(type).getQualifiedName().toString();
     }
 }
