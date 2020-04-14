@@ -26,6 +26,11 @@ dependencies {
 ```
 
 ## 如何使用
+### 命名规则
+#### 1、非内部类使用是类名+$Parcelable，即:类名$Parcelable
+#### 2、内部类使用是父类名+类名+$Parcelable，即:父类名类名$Parcelable
+#### 3、内部类的内部类使用是父父类名+父类名+类名+$Parcelable，即:父父类名父类名类名$Parcelable 。。。
+
 ```groovy
 
 @com.zxn.parcel.Parcelable
