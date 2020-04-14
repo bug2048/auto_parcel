@@ -5,6 +5,13 @@ auto_parcel  是Android序列化工具,极其简单。
 
 ## 导入依赖
 ```groovy
+dependencies {
+    implementation 'com.zxn.parcel:auto_parcel:0.1.0'
+    annotationProcessor 'com.zxn.parcel:auto_parcel:0.1.0'
+}
+```
+### 或者
+```groovy
 allprojects {
     //所有的项目都引用
     repositories {
@@ -12,12 +19,12 @@ allprojects {
         ....
     }
 }
-
 dependencies {
-    implementation 'com.github.bug2048:auto_parcel:0.0.5'
-    annotationProcessor 'com.github.bug2048:auto_parcel:0.0.5'
+    implementation 'com.github.bug2048:auto_parcel:0.1.0'
+    annotationProcessor 'com.github.bug2048:auto_parcel:0.1.0'
 }
 ```
+
 ## 如何使用
 ```groovy
 
@@ -75,8 +82,11 @@ public class People {
 
 ## 注意事项
 ### 1、目前不支持内部类使用
-### 2、须保留成员变量的get\set方法
 
+## 版本说明
+### v0.1.0 ：支持内部类序列化
+### v0.5.0 ：格式化代码，修复已知问题
+### v0.1.0 ：实现自动序列化
 
 ## License
 ```groovy
