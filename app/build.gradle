@@ -4,6 +4,11 @@ android {
     lintOptions {
         abortOnError false
     }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
 
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -30,10 +35,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'com.zxn.parcel:auto_parcel:0.1.0'
 
     implementation project(':Compiler')
     annotationProcessor project(':Compiler')
-
-//    implementation 'com.github.bug2048:auto_parcel:0.0.5'
-//    annotationProcessor 'com.github.bug2048:auto_parcel:0.0.5'
+//
+//    implementation 'com.github.bug2048:auto_parcel:0.1.0'
+//    annotationProcessor 'com.github.bug2048:auto_parcel:0.1.0'
 }

@@ -8,8 +8,6 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.type.TypeMirror;
 
 /**
- * @author liuliqiang
- * @date 2019-12-12
  */
 public class ProxyInfo {
     private static final String SUFFIX = "$Parcelable";

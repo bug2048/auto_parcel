@@ -17,15 +17,14 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
-import javax.management.RuntimeErrorException;
 import javax.tools.JavaFileObject;
 
 import static javax.tools.Diagnostic.Kind.ERROR;
 
 /**
- * @AutoService(Processor.class) 这个注解不要忘了，否则无法生成Java文件
  */
-@SupportedSourceVersion(SourceVersion.RELEASE_6)
+//@AutoService(Processor.class)
+@SupportedSourceVersion(SourceVersion.RELEASE_7)
 @SupportedAnnotationTypes("com.zxn.parcel.annotation.Parcelable")
 public class ParcelProcessor extends AbstractProcessor {
 
